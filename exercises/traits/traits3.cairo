@@ -7,7 +7,6 @@
 
 // Execute `starklings hint traits3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
 
 #[derive(Copy, Drop)]
 struct Fish {
@@ -37,7 +36,7 @@ trait DogTrait {
 
 impl AnimalFishImpl of AnimalTrait::<Fish> {
     fn new() -> Fish {
-        Fish { noise: 'blub', distance: 0_u32 }
+        Fish { noise: 'blub', distance: 1_u32 }
     }
     fn make_noise(self: Fish) -> felt252 {
         self.noise
@@ -49,7 +48,7 @@ impl AnimalFishImpl of AnimalTrait::<Fish> {
 
 impl AnimalDogImpl of AnimalTrait::<Dog> {
     fn new() -> Dog {
-        Dog { noise: 'woof', distance: 0_u32 }
+        Dog { noise: 'woof', distance: 1_u32 }
     }
     fn make_noise(self: Dog) -> felt252 {
         self.noise
@@ -59,9 +58,19 @@ impl AnimalDogImpl of AnimalTrait::<Dog> {
     }
 }
 
-// TODO: implement FishTrait for the type Fish
+impl FishImpl of FishTrait {
+    fn swim(ref self: Fish) -> () {
+        ()
+    }
+}
 
-// TODO: implement DogTrait for the type Dog
+impl DogImpl of DogTrait {
+    fn walk(ref self: Dog) -> () {
+        ()
+    }
+}
+
+
 
 #[test]
 fn test_traits3() {
